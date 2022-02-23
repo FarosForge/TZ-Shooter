@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private int damage;
     [SerializeField] private float force;
+    [SerializeField] private GameObject hitEffect;
 
     void Start()
     {
@@ -19,6 +20,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        var effect = Instantiate(hitEffect);
+        effect.transform.position = transform.position;
+
         if(other.TryGetComponent<AIView>(out var aI))
         {
             aI.onHitAction?.Invoke(damage);

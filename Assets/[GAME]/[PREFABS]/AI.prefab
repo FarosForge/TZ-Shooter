@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9029537303065953617}
   - component: {fileID: 9029537303065953619}
   - component: {fileID: 9029537303065953618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9029537303771528539}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 9029537304216015211}
   - component: {fileID: 9029537304216015221}
   - component: {fileID: 9029537304216015222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,6 +208,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9029537303771528539}
     m_Modifications:
+    - target: {fileID: 6999781253997918478, guid: 9076ce7c2c6379a41b3d8c5cd5b0d154, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6999781254596421162, guid: 9076ce7c2c6379a41b3d8c5cd5b0d154, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -255,6 +259,10 @@ PrefabInstance:
     - target: {fileID: 6999781254596421163, guid: 9076ce7c2c6379a41b3d8c5cd5b0d154, type: 3}
       propertyPath: m_Name
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6999781254596421163, guid: 9076ce7c2c6379a41b3d8c5cd5b0d154, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6999781254596421175, guid: 9076ce7c2c6379a41b3d8c5cd5b0d154, type: 3}
       propertyPath: property.shoot_rate

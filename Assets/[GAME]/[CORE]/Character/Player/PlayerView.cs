@@ -1,49 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using PLAYER;
+using System;
 
 public class PlayerView : MonoBehaviour, IView
 {
     [SerializeField] private Components components;
-    [SerializeField] private MovementProperty movementProperty;
+    [SerializeField] private Property property;
     [SerializeField] private WeaponView weapon;
 
     Components IView.components => components; 
-
     public WeaponView current_Weapon => weapon;
+    public Property Property => property;
+    public Action<int> onHitAction { get; set; }
 
     private float _rotationX = 0;
 
     public void Move(Vector3 direction)
     {
-        components.rigidbody.velocity = direction * movementProperty.speed;
+        components.rigidbody.velocity = direction * Property.speed;
     }
 
     public void Rotate(Vector2 direction)
     {
-        components.transform.Rotate(new Vector3(0, direction.x * movementProperty.speed_rotate, 0));
+        components.transform.Rotate(new Vector3(0, direction.x * Property.speed_rotate, 0));
     }
 
     public void CameraRotate(Vector2 direction)
     {
-        _rotationX -= direction.y * movementProperty.speed_rotate;
-        _rotationX = Mathf.Clamp(_rotationX, movementProperty.camera_clamp.x, movementProperty.camera_clamp.y);
+        _rotationX -= direction.y * Property.speed_rotate;
+        _rotationX = Mathf.Clamp(_rotationX, property.camera_clamp.x, Property.camera_clamp.y);
         components.camera_root.localEulerAngles = new Vector3(_rotationX, 0, 0);
+    }
+
+    public void BackForce(float force)
+    {
+        components.rigidbody.AddForce((-components.transform.forward) * force, ForceMode.Impulse);
     }
 }
 
-[System.Serializable]
-public struct Components
+namespace PLAYER
 {
-    public Transform transform;
-    public Transform camera_root;
-    public Rigidbody rigidbody;
+    [System.Serializable]
+    public struct Components
+    {
+        public Transform transform;
+        public Transform camera_root;
+        public Rigidbody rigidbody;
+    }
+
+    [System.Serializable]
+    public struct Property
+    {
+        public float speed;
+        public float speed_rotate;
+        public Vector2 camera_clamp;
+    }
 }
 
-[System.Serializable]
-public struct MovementProperty
-{
-    public float speed;
-    public float speed_rotate;
-    public Vector2 camera_clamp;
-}

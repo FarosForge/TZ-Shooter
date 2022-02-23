@@ -1,16 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class WeaponController : IWeapon
 {
     private IAttack attack;
     private IWeaponView view;
 
-    public WeaponController(IWeaponView view)
+    public WeaponController(IWeaponView view, bool ai = false)
     {
         this.view = view;
-        attack = new AttackModel();
+        attack = new AttackModel(ai);
     }
 
     public void Init()

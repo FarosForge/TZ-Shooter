@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerController : IEquiped
 {
     private IModel model;
     private IView view;
     private IWeapon weapon;
+    private IStats stats;
 
     public PlayerController(IView view)
     {
         this.view = view;
         model = new PlayerModel();
+        stats = new Stats(10);
+        view.onHitAction += stats.GetHit;
     }
 
     public void Init()
@@ -30,6 +29,8 @@ public class PlayerController : IEquiped
 
     public void Tick()
     {
+        if (stats.IsDead()) return;
+
         view.Move(model.GetDirection(view.components.transform));
         view.Rotate(model.GetRotateDirection());
         view.CameraRotate(model.GetRotateDirection());

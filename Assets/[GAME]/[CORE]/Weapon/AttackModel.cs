@@ -1,10 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackModel : IAttack
 {
     private float timer;
+
+    private readonly bool ai;
+
+    public AttackModel(bool _ai)
+    {
+        ai = _ai;
+    }
 
     public bool CanShoot(float shoot_rate)
     {
@@ -14,7 +19,15 @@ public class AttackModel : IAttack
         }
         else
         {
-            if (Input.GetMouseButton(0))
+            if (!ai)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    timer = shoot_rate;
+                    return true;
+                }
+            }
+            else
             {
                 timer = shoot_rate;
                 return true;

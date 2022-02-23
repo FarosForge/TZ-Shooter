@@ -15,9 +15,10 @@ public class PlayerView : MonoBehaviour, IView
 
     private float _rotationX = 0;
 
-    public void Move(Vector3 direction)
+    public void Move(Vector3 direction, bool isGrounded)
     {
-        components.rigidbody.velocity = direction * Property.speed;
+        if(isGrounded)
+            components.rigidbody.velocity = direction * Property.speed;
     }
 
     public void Rotate(Vector2 direction)
@@ -54,6 +55,7 @@ namespace PLAYER
         public float speed;
         public float speed_rotate;
         public Vector2 camera_clamp;
+        public LayerMask groundMask;
     }
 }
 

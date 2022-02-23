@@ -24,4 +24,9 @@ public class PlayerModel : IModel
     {
         return new Vector3(MouseAxis.x, MouseAxis.y);
     }
+
+    public bool IsGrounded(Transform center, LayerMask groundMask)
+    {
+        return Physics.CheckSphere(center.position, 0.5f, groundMask);
+    }
 }

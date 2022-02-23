@@ -31,7 +31,7 @@ public class PlayerController : IEquiped
     {
         if (stats.IsDead()) return;
 
-        view.Move(model.GetDirection(view.components.transform));
+        view.Move(model.GetDirection(view.components.transform), model.IsGrounded(view.components.transform, view.Property.groundMask));
         view.Rotate(model.GetRotateDirection());
         view.CameraRotate(model.GetRotateDirection());
 

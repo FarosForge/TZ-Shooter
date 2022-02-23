@@ -22,14 +22,14 @@ public class Bullet : MonoBehaviour
         if(other.TryGetComponent<AIView>(out var aI))
         {
             aI.onHitAction?.Invoke(damage);
-            Destroy(gameObject);
         }
 
         if (other.TryGetComponent<PlayerView>(out var player))
         {
             player.onHitAction?.Invoke(0);
             player.BackForce(force);
-            Destroy(gameObject);
         }
+
+        Destroy(gameObject);
     }
 }
